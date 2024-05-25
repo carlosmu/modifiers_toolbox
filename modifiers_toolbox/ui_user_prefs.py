@@ -77,7 +77,7 @@ class MTB_Preferences(bpy.types.AddonPreferences):
         layout = self.layout 
         
         box = layout.box()
-        box.label(text="Favourite modifiers:", icon='PRESET')
+        box.label(text="Favourite modifiers:", icon='BOOKMARKS')
         
         row = box.row()
 

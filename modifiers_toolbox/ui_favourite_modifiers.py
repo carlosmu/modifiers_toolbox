@@ -129,9 +129,9 @@ class MTB_MT_Favourite_modifiers(bpy.types.Menu):
 ##################
 # DRAW BUTTON
 ##################
-def draw_item(self, context):
-    layout = self.layout
-    layout.menu(MTB_MT_Favourite_modifiers.bl_idname)
+# def draw_item(self, context):
+#     layout = self.layout
+#     layout.menu(MTB_MT_Favourite_modifiers.bl_idname)
 
 ##################
 # REGISTER

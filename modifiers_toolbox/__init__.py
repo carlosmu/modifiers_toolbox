@@ -26,7 +26,7 @@ bl_info = {
     "name": "Modifiers Toolbox",
     "author": "Carlos Mu <carlos.damian.munoz@gmail.com>",
     "blender": (2, 93, 0),
-    "version": (1, 0, 0),
+    "version": (1, 1, 0),
     "category": "Interface",
     "location": "Modifiers Properties",
     "description": "Modifier tools to improve your workflow",

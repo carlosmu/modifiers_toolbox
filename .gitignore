@@ -1,5 +1,6 @@
 # Exclude pycache folder and extension
 /__pycache__/
+/*_OLD
 *.pyc
 
 *.png~

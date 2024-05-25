@@ -4,7 +4,7 @@ import bpy # type: ignore
 # MENU
 ##################
 class MTB_MT_Add_modifier_menu(bpy.types.Menu):
-    bl_label = "All Modifiers list"
+    bl_label = "All Modifiers"
     bl_idname = "OBJECT_MT_Add_modifier_menu"
 
     def draw(self, context):
