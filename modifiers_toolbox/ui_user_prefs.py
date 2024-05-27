@@ -7,6 +7,7 @@ import bpy # type: ignore
 class MTB_Preferences(bpy.types.AddonPreferences):
     bl_idname = __package__
 
+    hide_button : bpy.props.BoolProperty(name= "Embed original menu on addon toolbox", default =True) # type: ignore
     ##################
     # Edit Modifiers
     data_transfer : bpy.props.BoolProperty(name = "DATA_TRANSFER", default = False) # type: ignore
@@ -33,7 +34,7 @@ class MTB_Preferences(bpy.types.AddonPreferences):
     remesh : bpy.props.BoolProperty(name = "REMESH", default = False) # type: ignore
     screw : bpy.props.BoolProperty(name = "SCREW", default = False) # type: ignore
     skin : bpy.props.BoolProperty(name = "SKIN", default = False) # type: ignore
-    solidify : bpy.props.BoolProperty(name = "SOLIDIFY", default = False) # type: ignore
+    solidify : bpy.props.BoolProperty(name = "SOLIDIFY", default = True) # type: ignore
     subdivision_surface : bpy.props.BoolProperty(name = "SUBSURF", default = True) # type: ignore
     triangulate : bpy.props.BoolProperty(name = "TRIANGULATE", default = False) # type: ignore
     volume_to_mesh : bpy.props.BoolProperty(name = "VOLUME_TO_MESH", default = False) # type: ignore
@@ -53,7 +54,7 @@ class MTB_Preferences(bpy.types.AddonPreferences):
     shrinkwrap : bpy.props.BoolProperty(name = "SHRINKWRAP", default = True) # type: ignore
     simple_deform : bpy.props.BoolProperty(name = "SIMPLE_DEFORM", default = False) # type: ignore
     smooth : bpy.props.BoolProperty(name = "SMOOTH", default = False) # type: ignore
-    smooth_corrictive : bpy.props.BoolProperty(name = "CORRECTIVE_SMOOTH", default = False) # type: ignore
+    smooth_corrective : bpy.props.BoolProperty(name = "CORRECTIVE_SMOOTH", default = False) # type: ignore
     smooth_laplacian : bpy.props.BoolProperty(name = "LAPLACIANSMOOTH", default = False) # type: ignore
     surface_deform : bpy.props.BoolProperty(name = "SURFACE_DEFORM", default = False) # type: ignore
     warp : bpy.props.BoolProperty(name = "WARP", default = False) # type: ignore
@@ -75,6 +76,11 @@ class MTB_Preferences(bpy.types.AddonPreferences):
     # UI          
     def draw(self, context):
         layout = self.layout 
+
+        box = layout.box()
+        box.label(text="Behaviour:", icon='OPTIONS')
+        box.prop(self, "hide_button")
+        box.separator()
         
         box = layout.box()
         box.label(text="Favourite modifiers:", icon='BOOKMARKS')
@@ -151,6 +157,7 @@ class MTB_Preferences(bpy.types.AddonPreferences):
         col.prop(self, "particle_system", text="Particle System")
         col.prop(self, "soft_body", text="Soft Body")
 
+        box.separator()
 
         layout.separator()
 

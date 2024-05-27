@@ -138,10 +138,6 @@ class MTB_MT_Favourite_modifiers(bpy.types.Menu):
 ##################
 def register():
     bpy.utils.register_class(MTB_MT_Favourite_modifiers)
-    # bpy.types.DATA_PT_modifiers.append(draw_item)
-    # bpy.types.OBJECT_MT_modifier_add.prepend(draw_item)
 
 def unregister():
     bpy.utils.unregister_class(MTB_MT_Favourite_modifiers)
-    # bpy.types.DATA_PT_modifiers.remove(draw_item)
-    # bpy.types.OBJECT_MT_modifier_add.remove(draw_item)
