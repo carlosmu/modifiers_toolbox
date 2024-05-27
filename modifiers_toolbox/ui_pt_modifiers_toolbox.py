@@ -23,9 +23,9 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
         if not prefs.hide_button:
             layout.operator("wm.call_menu", text="Add Modifier", icon='ADD').name = "OBJECT_MT_modifier_add"
         
-        row = layout.row(align=True)
-        row.scale_y = 1.4
-        row.scale_x = 1.2
+        box = layout.box()
+        row = box.row(align=True)
+        row.scale_y, row.scale_x = 1.4, 1.2
         row.menu(ui_add_modifier_menu.MTB_MT_Add_modifier_menu.bl_idname, text="Modifiers", icon='MODIFIER_DATA')
         row.separator()
         row.menu(ui_favourite_modifiers.MTB_MT_Favourite_modifiers.bl_idname,text="", icon='BOOKMARKS')
@@ -33,8 +33,17 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
             row.operator("wm.call_menu", text="", icon='ADD').name = "OBJECT_MT_modifier_add"
         row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='PREFERENCES', emboss=True, text="")
         
+        row = box.row(align=True)
+        row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='CHECKMARK', text="Apply All", emboss=True)
+        row.separator()
+        row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='X', text="Delete All", emboss=True)
+        row.separator()
+        row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='FULLSCREEN_ENTER', emboss=True, text="")
+        row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='RESTRICT_VIEW_OFF', emboss=True, text="")
+        row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='RESTRICT_RENDER_OFF', emboss=True, text="")
+
         layout.template_modifiers()
-        layout.separator()
+        # layout.separator()
 
 def empty_draw(self, content):
     pass
