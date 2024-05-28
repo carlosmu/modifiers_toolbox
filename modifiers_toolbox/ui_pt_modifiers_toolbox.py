@@ -23,6 +23,7 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
     def draw(self,context):
         layout = self.layout
         prefs = bpy.context.preferences.addons[__package__].preferences
+        ob_type = context.object.type
 
         if not prefs.hide_button:
             layout.operator("wm.call_menu", text="Add Modifier", icon='ADD').name = "OBJECT_MT_modifier_add"
@@ -32,7 +33,8 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
         row.scale_y, row.scale_x = 1.4, 1.2
         row.menu(ui_add_modifier_menu.MTB_MT_Add_modifier_menu.bl_idname, text="Modifiers", icon='MODIFIER_DATA')
         row.separator()
-        row.menu(ui_favourite_modifiers.MTB_MT_Favourite_modifiers.bl_idname,text="", icon='BOOKMARKS')
+        if ob_type in ob_type in {'MESH'}:
+            row.menu(ui_favourite_modifiers.MTB_MT_Favourite_modifiers.bl_idname,text="", icon='BOOKMARKS')
         if prefs.hide_button:
             row.operator("wm.call_menu", text="", icon='ADD').name = "OBJECT_MT_modifier_add"
         row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='PREFERENCES', emboss=True, text="")

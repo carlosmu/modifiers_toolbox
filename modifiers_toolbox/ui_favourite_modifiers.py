@@ -9,7 +9,8 @@ class MTB_MT_Favourite_modifiers(bpy.types.Menu):
 
     def draw(self, context):
         layout = self.layout
-        # ob_type = context.object.type
+        ob_type = context.object.type
+        # {'MESH', 'CURVE', 'FONT', 'SURFACE', 'LATTICE', 'VOLUME'}
 
         prefs = context.preferences.addons[__package__].preferences
         if prefs.data_transfer:
@@ -33,7 +34,7 @@ class MTB_MT_Favourite_modifiers(bpy.types.Menu):
         if prefs.vertex_weight_proximity:
             layout.operator("object.modifier_add", text="Vertex Weight Proximity", icon="MOD_VERTEX_WEIGHT").type='VERTEX_WEIGHT_PROXIMITY'
         ###
-        if prefs.array:
+        if prefs.array and ob_type in {'MESH', 'CURVE', 'FONT', 'SURFACE'}: # Use this for future versions, to show the favourites in diferent object types
             layout.operator("object.modifier_add", text="Array", icon="MOD_ARRAY").type='ARRAY'
         if prefs.bevel:
             layout.operator("object.modifier_add", text="Bevel", icon="MOD_BEVEL").type='BEVEL'
