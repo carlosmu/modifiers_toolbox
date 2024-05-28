@@ -23,7 +23,8 @@ class MTB_MT_Add_modifier_menu(bpy.types.Menu):
             col.label(text="Generate")
             col.separator()
             col.menu_contents("OBJECT_MT_modifier_add_generate")
-            col.operator("object.modifier_add", icon="GEOMETRY_NODES", text="Geometry Nodes").type='NODES'
+            if ob_type in {'MESH', 'CURVE', 'FONT'}:
+                col.operator("object.modifier_add", icon="GEOMETRY_NODES", text="Geometry Nodes").type='NODES'
         
         if ob_type in {'MESH', 'CURVE', 'FONT', 'SURFACE', 'LATTICE', 'VOLUME'}:
             col = row.column()
