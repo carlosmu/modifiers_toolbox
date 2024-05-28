@@ -15,6 +15,10 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
     bl_options = {'HIDE_HEADER'}
  
     
+    @classmethod
+    def poll(cls, context):
+        if context.object.type in {'MESH', 'CURVE', 'FONT', 'SURFACE', 'LATTICE', 'VOLUME'}:
+            return True
 
     def draw(self,context):
         layout = self.layout
