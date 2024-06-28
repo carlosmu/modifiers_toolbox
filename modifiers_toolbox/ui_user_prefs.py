@@ -83,7 +83,7 @@ class MTB_Preferences(bpy.types.AddonPreferences):
         box.separator()
         
         box = layout.box()
-        box.label(text="Favourite modifiers:", icon='BOOKMARKS')
+        box.label(text="Favourite modifiers (for mesh objects only):", icon='BOOKMARKS')
         
         row = box.row()
 
