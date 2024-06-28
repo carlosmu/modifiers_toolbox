@@ -42,7 +42,7 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
         row = box.row(align=True)
         row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='CHECKMARK', text="Apply All", emboss=True)
         row.separator()
-        row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='X', text="Delete All", emboss=True)
+        row.operator("modifierstoolbox.remove_all_modifiers", icon='X', text="Remove All", emboss=True)
         row.separator()
         row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='FULLSCREEN_ENTER', emboss=True, text="")
         row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='RESTRICT_VIEW_OFF', emboss=True, text="")

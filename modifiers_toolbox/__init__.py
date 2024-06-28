@@ -21,6 +21,7 @@ from . import ui_favourite_modifiers
 from . import ui_pt_modifiers_toolbox
 from . import ui_user_prefs
 from . import ot_open_preferences
+from . import ot_remove_all_modifiers
 
 bl_info = {
     "name": "Modifiers Toolbox",
@@ -43,6 +44,7 @@ def register():
     ui_favourite_modifiers.register()
     ui_pt_modifiers_toolbox.register()
     ot_open_preferences.register()
+    ot_remove_all_modifiers.register()
     ui_user_prefs.register()
 
 def unregister():
@@ -50,4 +52,5 @@ def unregister():
     ui_favourite_modifiers.unregister()
     ui_pt_modifiers_toolbox.unregister()
     ot_open_preferences.unregister()
+    ot_remove_all_modifiers.unregister()
     ui_user_prefs.unregister()
