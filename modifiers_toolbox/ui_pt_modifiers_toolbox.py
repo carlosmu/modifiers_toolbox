@@ -40,7 +40,7 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
         row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='PREFERENCES', emboss=True, text="")
         
         row = box.row(align=True)
-        row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='CHECKMARK', text="Apply All", emboss=True)
+        row.operator("modifierstoolbox.apply_all_modifiers", icon='CHECKMARK', text="Apply All", emboss=True)
         row.separator()
         row.operator("modifierstoolbox.remove_all_modifiers", icon='X', text="Remove All", emboss=True)
         row.separator()

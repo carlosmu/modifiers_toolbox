@@ -22,11 +22,12 @@ from . import ui_pt_modifiers_toolbox
 from . import ui_user_prefs
 from . import ot_open_preferences
 from . import ot_remove_all_modifiers
+from . import ot_apply_all_modifiers
 
 bl_info = {
     "name": "Modifiers Toolbox",
     "author": "Carlos Mu <carlos.damian.munoz@gmail.com>",
-    "blender": (2, 93, 0),
+    "blender": (3, 2, 0),
     "version": (1, 1, 0),
     "category": "Interface",
     "location": "Modifiers Properties",
@@ -45,6 +46,7 @@ def register():
     ui_pt_modifiers_toolbox.register()
     ot_open_preferences.register()
     ot_remove_all_modifiers.register()
+    ot_apply_all_modifiers.register()
     ui_user_prefs.register()
 
 def unregister():
@@ -53,4 +55,5 @@ def unregister():
     ui_pt_modifiers_toolbox.unregister()
     ot_open_preferences.unregister()
     ot_remove_all_modifiers.unregister()
+    ot_apply_all_modifiers.unregister()
     ui_user_prefs.unregister()

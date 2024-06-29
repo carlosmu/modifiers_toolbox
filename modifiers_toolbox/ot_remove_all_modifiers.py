@@ -1,7 +1,6 @@
 import bpy # type: ignore
-
 class MTB_OT_remove_all_modifiers(bpy.types.Operator):
-    """Remove all modifiers of selecte objects"""
+    """Remove all modifiers of selected objects"""
     bl_idname = "modifierstoolbox.remove_all_modifiers"
     bl_label = "Remove all modifiers in selected objects"
     bl_options = {'REGISTER', 'UNDO'}
