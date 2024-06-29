@@ -44,9 +44,15 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
         row.separator()
         row.operator("modifierstoolbox.remove_all_modifiers", icon='X', text="Remove All", emboss=True)
         row.separator()
-        row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='FULLSCREEN_ENTER', emboss=True, text="")
-        row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='RESTRICT_VIEW_OFF', emboss=True, text="")
-        row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='RESTRICT_RENDER_OFF', emboss=True, text="")
+        if len(context.active_object.modifiers) > 0:
+            modifiers = context.active_object.modifiers
+            row.operator("modifierstoolbox.display_toggles", icon='FULLSCREEN_ENTER', emboss=True, text="", depress = True if modifiers[0].show_expanded == True else False).action = 'SHOW_EXPANDED'
+            row.operator("modifierstoolbox.display_toggles", icon='RESTRICT_VIEW_OFF', emboss=True, text="", depress = True if modifiers[0].show_viewport == True else False).action = 'SHOW_VIEWPORT'
+            row.operator("modifierstoolbox.display_toggles", icon='RESTRICT_RENDER_OFF', emboss=True, text="", depress = True if modifiers[0].show_render == True else False).action = 'SHOW_RENDER'
+        else:
+            row.operator("modifierstoolbox.display_toggles", icon='FULLSCREEN_ENTER', emboss=True, text="").action = 'SHOW_EXPANDED'
+            row.operator("modifierstoolbox.display_toggles", icon='RESTRICT_VIEW_OFF', emboss=True, text="").action = 'SHOW_VIEWPORT'
+            row.operator("modifierstoolbox.display_toggles", icon='RESTRICT_RENDER_OFF', emboss=True, text="").action = 'SHOW_RENDER'
 
         layout.template_modifiers()
         # layout.separator()
