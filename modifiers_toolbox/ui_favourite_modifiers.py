@@ -95,7 +95,7 @@ class MTB_MT_Favourite_modifiers(bpy.types.Menu):
             layout.operator("object.modifier_add", text="Simple Deform", icon="MOD_SIMPLEDEFORM").type='SIMPLE_DEFORM'
         if prefs.smooth:
             layout.operator("object.modifier_add", text="Smooth", icon="MOD_SMOOTH").type='SMOOTH'
-        if prefs.smooth_corrictive:
+        if prefs.smooth_corrective:
             layout.operator("object.modifier_add", text="Smooth Corrective", icon="MOD_SMOOTH").type='CORRECTIVE_SMOOTH'
         if prefs.smooth_laplacian:
             layout.operator("object.modifier_add", text="Smooth Laplacian", icon="MOD_SMOOTH").type='LAPLACIANSMOOTH'
