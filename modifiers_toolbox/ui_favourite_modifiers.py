@@ -4,7 +4,7 @@ import bpy # type: ignore
 # MENU
 ##################
 class MTB_MT_Favourite_modifiers(bpy.types.Menu):
-    bl_label = "Favourites"
+    bl_label = "Favourite Modifiers"
     bl_idname = "OBJECT_MT_Favourite_modifiers"
 
     def draw(self, context):

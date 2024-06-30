@@ -20,6 +20,7 @@ from . import ui_add_modifier_menu
 from . import ui_favourite_modifiers
 from . import ui_pt_modifiers_toolbox
 from . import ui_user_prefs
+from . import ui_keymap
 from . import ot_open_preferences
 from . import ot_remove_all_modifiers
 from . import ot_apply_all_modifiers
@@ -50,6 +51,7 @@ def register():
     ot_apply_all_modifiers.register()
     ot_display_toggles.register()
     ui_user_prefs.register()
+    ui_keymap.register()
 
 def unregister():
     ui_add_modifier_menu.unregister()
@@ -60,3 +62,4 @@ def unregister():
     ot_apply_all_modifiers.unregister()
     ot_display_toggles.unregister()
     ui_user_prefs.unregister()
+    ui_keymap.unregister()
