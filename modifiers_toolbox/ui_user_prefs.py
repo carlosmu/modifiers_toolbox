@@ -9,6 +9,26 @@ class MTB_Preferences(bpy.types.AddonPreferences):
 
     hide_button : bpy.props.BoolProperty(name= "Embed original menu on addon toolbox", default =True) # type: ignore
     ##################
+    # Keymap props
+    # keymap_letters = [('A', 'A', '', '', 0),
+    #                   ('B', 'B', '', '', 1),
+    #                   ('C', 'C', '', '', 2),
+    #                   ('D', 'D', '', '', 3),
+    #                   ('E', 'E', '', '', 4),
+    #                   ('F', 'F', '', '', 5),
+    #                   ('G', 'G', '', '', 6),
+    #                   ('H', 'H', '', '', 7),
+    #                   ('I', 'I', '', '', 8),
+    #                   ('J', 'J', '', '', 9),
+    #                   ('K', 'K', '', '', 10),
+    #                   ('L', 'L', '', '', 11),
+    #                   ('M', 'M', '', '', 12),
+    #                     ]
+    # keymap_letter : bpy.props.EnumProperty(name = "Key", items = keymap_letters, default = 'M') # type: ignore
+    # keymap_ctrl : bpy.props.BoolProperty(name = "CTRL", default = False) # type: ignore
+    # keymap_shift : bpy.props.BoolProperty(name = "SHIFT", default = False) # type: ignore
+    # keymap_alt : bpy.props.BoolProperty(name = "ALT", default = True) # type: ignore
+    
     # Edit Modifiers
     data_transfer : bpy.props.BoolProperty(name = "DATA_TRANSFER", default = False) # type: ignore
     mesh_cache : bpy.props.BoolProperty(name = "MESH_CACHE", default = False) # type: ignore
@@ -81,6 +101,17 @@ class MTB_Preferences(bpy.types.AddonPreferences):
         box.label(text="Behaviour:", icon='OPTIONS')
         box.prop(self, "hide_button")
         box.separator()
+
+        # box = layout.box()
+        # box.label(text="Shortcut for favourite modifiers menu:", icon='HAND')
+        # row = box.row()
+        # row.scale_x = 0.3
+        # row.prop(self, "keymap_letter")
+        # col = row.column()
+        # col.prop(self, "keymap_alt", toggle = False)
+        # col.prop(self, "keymap_ctrl", toggle = False)
+        # col.prop(self, "keymap_shift", toggle = False)
+        # box.separator()
         
         box = layout.box()
         box.label(text="Favourite modifiers (for mesh objects only):", icon='BOOKMARKS')
