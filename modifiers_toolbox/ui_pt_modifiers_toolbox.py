@@ -28,15 +28,23 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
         if not prefs.hide_button:
             layout.operator("wm.call_menu", text="Add Modifier", icon='ADD').name = "OBJECT_MT_modifier_add"
         
-        box = layout.box()
+        row = layout.row()
+        box = row.box()
         row = box.row(align=True)
-        row.scale_y, row.scale_x = 1.4, 1.2
-        row.menu(ui_add_modifier_menu.MTB_MT_Add_modifier_menu.bl_idname, text="Modifiers", icon='MODIFIER_DATA')
-        row.separator()
-        if ob_type in ob_type in {'MESH'}:
-            row.menu(ui_favourite_modifiers.MTB_MT_Favourite_modifiers.bl_idname,text="", icon='BOOKMARKS')
+        box.scale_y, box.scale_x = 1.4, 1.2
+        # row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='PREFERENCES', emboss=True, text="")
+        # row.separator()
         if prefs.hide_button:
             row.operator("wm.call_menu", text="", icon='ADD').name = "OBJECT_MT_modifier_add"
+            # row.separator()
+        row.menu(ui_add_modifier_menu.MTB_MT_Add_modifier_menu.bl_idname, text="Modifiers", icon='MODIFIER_DATA')
+        if ob_type in ob_type in {'MESH'}:
+            row.separator()
+            if prefs.hide_favourites_label:
+                row.menu(ui_favourite_modifiers.MTB_MT_Favourite_modifiers.bl_idname,text="", icon='BOOKMARKS')
+            else:
+                row.menu(ui_favourite_modifiers.MTB_MT_Favourite_modifiers.bl_idname, text="Favourites", icon='BOOKMARKS')
+        # row.separator()
         row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='PREFERENCES', emboss=True, text="")
         
         row = box.row(align=True)
@@ -46,16 +54,16 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
         row.separator()
         if len(context.active_object.modifiers) > 0:
             modifiers = context.active_object.modifiers
-            row.operator("modifierstoolbox.display_toggles", icon='FULLSCREEN_ENTER', emboss=True, text="", depress = True if modifiers[0].show_expanded == True else False).action = 'SHOW_EXPANDED'
             row.operator("modifierstoolbox.display_toggles", icon='RESTRICT_VIEW_OFF', emboss=True, text="", depress = True if modifiers[0].show_viewport == True else False).action = 'SHOW_VIEWPORT'
             row.operator("modifierstoolbox.display_toggles", icon='RESTRICT_RENDER_OFF', emboss=True, text="", depress = True if modifiers[0].show_render == True else False).action = 'SHOW_RENDER'
+            row.operator("modifierstoolbox.display_toggles", icon='FULLSCREEN_ENTER', emboss=True, text="", depress = True if modifiers[0].show_expanded == True else False).action = 'SHOW_EXPANDED'
         else:
-            row.operator("modifierstoolbox.display_toggles", icon='FULLSCREEN_ENTER', emboss=True, text="").action = 'SHOW_EXPANDED'
             row.operator("modifierstoolbox.display_toggles", icon='RESTRICT_VIEW_OFF', emboss=True, text="").action = 'SHOW_VIEWPORT'
             row.operator("modifierstoolbox.display_toggles", icon='RESTRICT_RENDER_OFF', emboss=True, text="").action = 'SHOW_RENDER'
+            row.operator("modifierstoolbox.display_toggles", icon='FULLSCREEN_ENTER', emboss=True, text="").action = 'SHOW_EXPANDED'
+        # box.separator()
 
         layout.template_modifiers()
-        # layout.separator()
 
 def empty_draw(self, content):
     pass

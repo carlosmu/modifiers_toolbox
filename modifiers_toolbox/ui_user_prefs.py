@@ -8,6 +8,7 @@ class MTB_Preferences(bpy.types.AddonPreferences):
     bl_idname = __package__
 
     hide_button : bpy.props.BoolProperty(name= "Embed original menu on addon toolbox", default =True) # type: ignore
+    hide_favourites_label : bpy.props.BoolProperty(name= "Hide title in favourites menu", default =False) # type: ignore
     ##################
     # Keymap props
     # keymap_letters = [('A', 'A', '', '', 0),
@@ -98,8 +99,9 @@ class MTB_Preferences(bpy.types.AddonPreferences):
         layout = self.layout 
 
         box = layout.box()
-        box.label(text="Behaviour:", icon='OPTIONS')
+        box.label(text="User Interface:", icon='OPTIONS')
         box.prop(self, "hide_button")
+        box.prop(self, "hide_favourites_label")
         box.separator()
 
         # box = layout.box()

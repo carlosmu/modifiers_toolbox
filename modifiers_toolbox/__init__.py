@@ -29,7 +29,7 @@ from . import ot_display_toggles
 bl_info = {
     "name": "Modifiers Toolbox",
     "author": "Carlos Mu <carlos.damian.munoz@gmail.com>",
-    "blender": (3, 2, 0),
+    "blender": (4, 0, 0),
     "version": (1, 1, 0),
     "category": "Interface",
     "location": "Modifiers Properties",
