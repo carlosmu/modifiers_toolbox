@@ -1,4 +1,6 @@
 import bpy # type: ignore
+import rna_keymap_ui # type: ignore
+from . import ui_keymap
 
 ##############################################
 #    USER PREFERENCES 
@@ -9,26 +11,6 @@ class MTB_Preferences(bpy.types.AddonPreferences):
 
     hide_button : bpy.props.BoolProperty(name= "Embed original menu on addon toolbox", default =True) # type: ignore
     hide_favourites_label : bpy.props.BoolProperty(name= "Hide title in favourites menu", default =False) # type: ignore
-    ##################
-    # Keymap props
-    # keymap_letters = [('A', 'A', '', '', 0),
-    #                   ('B', 'B', '', '', 1),
-    #                   ('C', 'C', '', '', 2),
-    #                   ('D', 'D', '', '', 3),
-    #                   ('E', 'E', '', '', 4),
-    #                   ('F', 'F', '', '', 5),
-    #                   ('G', 'G', '', '', 6),
-    #                   ('H', 'H', '', '', 7),
-    #                   ('I', 'I', '', '', 8),
-    #                   ('J', 'J', '', '', 9),
-    #                   ('K', 'K', '', '', 10),
-    #                   ('L', 'L', '', '', 11),
-    #                   ('M', 'M', '', '', 12),
-    #                     ]
-    # keymap_letter : bpy.props.EnumProperty(name = "Key", items = keymap_letters, default = 'M') # type: ignore
-    # keymap_ctrl : bpy.props.BoolProperty(name = "CTRL", default = False) # type: ignore
-    # keymap_shift : bpy.props.BoolProperty(name = "SHIFT", default = False) # type: ignore
-    # keymap_alt : bpy.props.BoolProperty(name = "ALT", default = True) # type: ignore
     
     # Edit Modifiers
     data_transfer : bpy.props.BoolProperty(name = "DATA_TRANSFER", default = False) # type: ignore
@@ -98,23 +80,45 @@ class MTB_Preferences(bpy.types.AddonPreferences):
     def draw(self, context):
         layout = self.layout 
 
+        # Configuring UI options
         box = layout.box()
         box.label(text="User Interface:", icon='OPTIONS')
         box.prop(self, "hide_button")
         box.prop(self, "hide_favourites_label")
         box.separator()
 
-        # box = layout.box()
-        # box.label(text="Shortcut for favourite modifiers menu:", icon='HAND')
-        # row = box.row()
-        # row.scale_x = 0.3
-        # row.prop(self, "keymap_letter")
-        # col = row.column()
-        # col.prop(self, "keymap_alt", toggle = False)
-        # col.prop(self, "keymap_ctrl", toggle = False)
-        # col.prop(self, "keymap_shift", toggle = False)
-        # box.separator()
-        
+
+        # Configuring Keymap Settings
+        box = layout.box()  
+        col = box.column()
+        col.label(text="Keymap Settings:",icon="HAND")
+
+        wm = bpy.context.window_manager
+        kc = wm.keyconfigs.user
+        old_km_name = ""
+        get_kmi_l = []
+        for km_add, kmi_add in ui_keymap.addon_keymaps:
+            for km_con in kc.keymaps:
+                if km_add.name == km_con.name:
+                    km = km_con
+                    break
+
+            for kmi_con in km.keymap_items:
+                if kmi_add.idname == kmi_con.idname:
+                    if kmi_add.name == kmi_con.name:
+                        get_kmi_l.append((km,kmi_con))
+
+        get_kmi_l = sorted(set(get_kmi_l), key=get_kmi_l.index)
+
+        for km, kmi in get_kmi_l:
+            # if not km.name == old_km_name:
+            #     col.label(text=str(km.name),icon="DOT")
+            col.context_pointer_set("keymap", km)
+            rna_keymap_ui.draw_kmi([], kc, km, kmi, col, 0)
+            col.separator()
+            # old_km_name = km.name
+
+        # Configuring Favourite modifiers
         box = layout.box()
         box.label(text="Favourite modifiers (for mesh objects only):", icon='BOOKMARKS')
         

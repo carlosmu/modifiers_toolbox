@@ -7,8 +7,13 @@ def register():
     kc = wm.keyconfigs.addon
     if kc:
         km = kc.keymaps.new(name='Window', space_type='EMPTY')
-        kmi = km.keymap_items.new("wm.call_menu", type = 'M', value = 'PRESS', ctrl= False, alt = True)
+        kmi = km.keymap_items.new("wm.call_menu", type = 'M', value = 'PRESS', ctrl= False, alt = True, shift = False)
         kmi.properties.name = "OBJECT_MT_Favourite_modifiers"
+        addon_keymaps.append((km, kmi))  
+    if kc:
+        km = kc.keymaps.new(name='Window', space_type='EMPTY')
+        kmi = km.keymap_items.new("wm.call_menu", type = 'M', value = 'PRESS', ctrl= False, alt = True, shift = True)
+        kmi.properties.name = "OBJECT_MT_modifier_add"
         addon_keymaps.append((km, kmi))  
         
 def unregister():
