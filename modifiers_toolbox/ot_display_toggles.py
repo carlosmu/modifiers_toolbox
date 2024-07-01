@@ -4,7 +4,7 @@ import bpy # type: ignore
 class MTB_OT_display_toggles(bpy.types.Operator):
     """Toggle display for all modifiers"""
     bl_idname = "modifierstoolbox.display_toggles"
-    bl_label = "Toggle display of all modifiers"
+    bl_label = "Toggle display for all modifiers"
     bl_options = {'REGISTER', 'UNDO'}
     enum_items = (
         ('SHOW_EXPANDED', '', '', 'MOD_MIRROR', 0),
