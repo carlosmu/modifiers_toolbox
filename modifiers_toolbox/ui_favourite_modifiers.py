@@ -13,6 +13,7 @@ class MTB_MT_Favourite_modifiers(bpy.types.Menu):
         # {'MESH', 'CURVE', 'FONT', 'SURFACE', 'LATTICE', 'VOLUME'}
 
         prefs = context.preferences.addons[__package__].preferences
+        ### EDIT MODIFIERS
         if prefs.data_transfer:
             layout.operator("object.modifier_add", text="Data Transfer", icon="MOD_DATA_TRANSFER").type='DATA_TRANSFER'
         if prefs.mesh_cache:
@@ -33,7 +34,9 @@ class MTB_MT_Favourite_modifiers(bpy.types.Menu):
             layout.operator("object.modifier_add", text="Vertex Weight Mix", icon="MOD_VERTEX_WEIGHT").type='VERTEX_WEIGHT_MIX'
         if prefs.vertex_weight_proximity:
             layout.operator("object.modifier_add", text="Vertex Weight Proximity", icon="MOD_VERTEX_WEIGHT").type='VERTEX_WEIGHT_PROXIMITY'
-        ###
+
+        ### GENERATE MODIFIERS
+        layout.separator()
         if prefs.array and ob_type in {'MESH', 'CURVE', 'FONT', 'SURFACE'}: # Use this for future versions, to show the favourites in diferent object types
             layout.operator("object.modifier_add", text="Array", icon="MOD_ARRAY").type='ARRAY'
         if prefs.bevel:
@@ -72,7 +75,9 @@ class MTB_MT_Favourite_modifiers(bpy.types.Menu):
             layout.operator("object.modifier_add", text="Wireframe", icon="MOD_WIREFRAME").type='WIREFRAME'
         if prefs.geometry_nodes:
             layout.operator("object.modifier_add", text="Geometry Nodes", icon="GEOMETRY_NODES").type='NODES'
-        ###
+        
+        ### DEFORM MODIFIERS
+        layout.separator()
         if prefs.armature:
             layout.operator("object.modifier_add", text="Armature", icon="MOD_ARMATURE").type='ARMATURE'
         if prefs.cast:
@@ -105,7 +110,9 @@ class MTB_MT_Favourite_modifiers(bpy.types.Menu):
             layout.operator("object.modifier_add", text="Warp", icon="MOD_WARP").type='WARP'
         if prefs.wave:
             layout.operator("object.modifier_add", text="Wave", icon="MOD_WAVE").type='WAVE'
-        ###
+        
+        ### PHYSICS MODIFIERS
+        layout.separator()
         if prefs.cloth:
             layout.operator("object.modifier_add", text="Cloth", icon="MOD_CLOTH").type='CLOTH'
         if prefs.collision:

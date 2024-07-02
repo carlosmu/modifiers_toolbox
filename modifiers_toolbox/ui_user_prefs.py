@@ -9,8 +9,8 @@ from . import ui_keymap
 class MTB_Preferences(bpy.types.AddonPreferences):
     bl_idname = __package__
 
-    hide_button : bpy.props.BoolProperty(name= "Embed original menu on addon toolbox", default =True) # type: ignore
-    hide_favourites_label : bpy.props.BoolProperty(name= "Hide title in favourites menu", default =False) # type: ignore
+    hide_button : bpy.props.BoolProperty(name= "Embed original menu in addon toolbox", default =True) # type: ignore
+    compact_ui : bpy.props.BoolProperty(name= "Compact User Interface", default =False) # type: ignore
     
     # Edit Modifiers
     data_transfer : bpy.props.BoolProperty(name = "DATA_TRANSFER", default = False) # type: ignore
@@ -48,7 +48,7 @@ class MTB_Preferences(bpy.types.AddonPreferences):
     # Deform Modifiers
     armature : bpy.props.BoolProperty(name = "ARMATURE", default = True) # type: ignore
     cast : bpy.props.BoolProperty(name = "CAST", default = False) # type: ignore
-    curve : bpy.props.BoolProperty(name = "CURVE", default = False) # type: ignore
+    curve : bpy.props.BoolProperty(name = "CURVE", default = True) # type: ignore
     displace : bpy.props.BoolProperty(name = "DISPLACE", default = False) # type: ignore
     hook : bpy.props.BoolProperty(name = "HOOK", default = False) # type: ignore
     laplacian_deform : bpy.props.BoolProperty(name = "LAPLACIANDEFORM", default = False) # type: ignore
@@ -84,7 +84,7 @@ class MTB_Preferences(bpy.types.AddonPreferences):
         box = layout.box()
         box.label(text="User Interface:", icon='OPTIONS')
         box.prop(self, "hide_button")
-        box.prop(self, "hide_favourites_label")
+        box.prop(self, "compact_ui")
         box.separator()
 
 

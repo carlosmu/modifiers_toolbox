@@ -39,17 +39,20 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
             # row.separator()
         row.menu(ui_add_modifier_menu.MTB_MT_Add_modifier_menu.bl_idname, text="Modifiers", icon='MODIFIER_DATA')
         if ob_type in ob_type in {'MESH'}:
-            row.separator()
-            if prefs.hide_favourites_label:
+            if prefs.compact_ui:
                 row.menu(ui_favourite_modifiers.MTB_MT_Favourite_modifiers.bl_idname,text="", icon='BOOKMARKS')
             else:
+                row.separator()
                 row.menu(ui_favourite_modifiers.MTB_MT_Favourite_modifiers.bl_idname, text="Favourites", icon='BOOKMARKS')
         # row.separator()
         row.operator(ot_open_preferences.MTB_OT_open_preferences.bl_idname, icon='PREFERENCES', emboss=True, text="")
         
         row = box.row(align=True)
+        if prefs.compact_ui:
+            box.scale_y, box.scale_x = 1.0, 1.0
         row.operator("modifierstoolbox.apply_all_modifiers", icon='CHECKMARK', text="Apply All", emboss=True)
-        row.separator()
+        if not prefs.compact_ui:
+            row.separator()
         row.operator("modifierstoolbox.remove_all_modifiers", icon='X', text="Remove All", emboss=True)
         row.separator()
         if len(context.active_object.modifiers) > 0:

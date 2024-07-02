@@ -2,7 +2,7 @@ import bpy # type: ignore
 # from bpy.props import EnumProperty
 
 class MTB_OT_display_toggles(bpy.types.Operator):
-    """Toggle display for all modifiers"""
+    """Toggle display for all modifiers. Assigned modifiers are needed."""
     bl_idname = "modifierstoolbox.display_toggles"
     bl_label = "Toggle display for all modifiers"
     bl_options = {'REGISTER', 'UNDO'}
@@ -12,7 +12,7 @@ class MTB_OT_display_toggles(bpy.types.Operator):
         ('SHOW_RENDER', '', '', 'RECOVER_LAST', 2),
     )
 
-    action: bpy.props.EnumProperty(items=enum_items)
+    action: bpy.props.EnumProperty(items=enum_items) # type: ignore
 
     @classmethod
     def poll(cls, context):
