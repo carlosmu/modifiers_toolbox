@@ -14,8 +14,12 @@ class MTB_OT_open_preferences(bpy.types.Operator):
 
     def execute(self, context):
         bpy.ops.screen.userpref_show('INVOKE_DEFAULT')
-        bpy.context.preferences.active_section = 'ADDONS'
-        bpy.data.window_managers["WinMan"].addon_search = "Modifiers Toolbox"
+        if bpy.app.version < (4, 2, 0):
+            bpy.context.preferences.active_section = 'ADDONS'
+            bpy.data.window_managers["WinMan"].addon_search = "Modifiers Toolbox"
+        else:
+            bpy.context.preferences.active_section = 'EXTENSIONS'
+            bpy.data.window_managers["WinMan"].extension_search = "Modifiers Toolbox"
 
         return{'FINISHED'}
 
