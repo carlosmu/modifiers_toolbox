@@ -1,5 +1,6 @@
 import bpy # type: ignore
-import rna_keymap_ui # type: ignore
+# import rna_keymap_ui # use this for import blender built-in keymap ui
+from . import rna_keymap_ui # use this for import addon override keymap ui
 from . import ui_keymap
 
 ##############################################
