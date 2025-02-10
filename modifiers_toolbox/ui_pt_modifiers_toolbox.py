@@ -68,8 +68,12 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
 
         layout.template_modifiers()
 
-def empty_draw(self, content):
-    pass
+def empty_draw(self, context):
+    ob_type = context.object.type
+    if bpy.app.version >= (4, 3, 0) and ob_type == 'GREASEPENCIL':
+        self.layout.operator("wm.call_menu", text="Add Modifier", icon='ADD').name = "OBJECT_MT_modifier_add"
+    else:
+        pass
 
 ##############################################
 ## Register/unregister classes and functions
