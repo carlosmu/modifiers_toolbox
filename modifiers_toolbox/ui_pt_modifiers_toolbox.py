@@ -70,8 +70,10 @@ class MTB_PT_Modifiers_toolbox(bpy.types.Panel):
 
 def empty_draw(self, context):
     ob_type = context.object.type
+    layout = self.layout
     if bpy.app.version >= (4, 3, 0) and ob_type == 'GREASEPENCIL':
-        self.layout.operator("wm.call_menu", text="Add Modifier", icon='ADD').name = "OBJECT_MT_modifier_add"
+        layout.operator("wm.call_menu", text="Add Modifier", icon='ADD').name = "OBJECT_MT_modifier_add"
+        layout.template_modifiers()
     else:
         pass
 
